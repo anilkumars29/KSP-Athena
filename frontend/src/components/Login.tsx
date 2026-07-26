@@ -36,6 +36,7 @@ export const Login: React.FC = () => {
             localStorage.setItem('ksp_auth_token', result.token);
             localStorage.setItem('ksp_role', result.user.role);
             localStorage.setItem('ksp_username', result.user.username);
+            window.dispatchEvent(new Event('ksp-auth-session-changed'));
             navigateTo('/dashboard');
         } catch (error) {
             setStatus({
@@ -65,6 +66,7 @@ export const Login: React.FC = () => {
             localStorage.setItem('ksp_auth_token', result.token);
             localStorage.setItem('ksp_role', result.user.role);
             localStorage.setItem('ksp_username', result.user.username);
+            window.dispatchEvent(new Event('ksp-auth-session-changed'));
             navigateTo('/dashboard');
         } catch (error) {
             setStatus({

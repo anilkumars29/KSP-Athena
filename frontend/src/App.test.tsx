@@ -138,6 +138,28 @@ test('opens a public full-access Argos demo without credentials', async () => {
   expect(screen.getByText('Governance')).toBeInTheDocument();
 });
 
+test('opens the Argos demo from the public root URL without an explicit hash route', async () => {
+  const fetchMock = vi.spyOn(globalThis, 'fetch').mockImplementation(() =>
+    jsonResponse({
+      success: true,
+      token: 'signed-argos-token',
+      user: { username: 'demo.argos', role: 'Argos' },
+      access: 'FULL_DEMO'
+    })
+  );
+
+  render(<App />);
+  fireEvent.click(screen.getByRole('button', { name: 'TRY DEMO AS ARGOS' }));
+
+  expect(await screen.findByText('Authenticated dashboard')).toBeInTheDocument();
+  expect(fetchMock).toHaveBeenCalledWith(
+    '/server/ks_intelli_pol_function/auth/demo',
+    expect.objectContaining({ method: 'POST' })
+  );
+  expect(window.location.hash).toBe('#/dashboard');
+  expect(localStorage.getItem('ksp_role')).toBe('Argos');
+});
+
 test('allows an Argos user to open FIR registration directly', async () => {
   localStorage.setItem('ksp_auth_token', 'signed-argos-token');
   localStorage.setItem('ksp_role', 'Argos');

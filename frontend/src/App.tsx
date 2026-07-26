@@ -139,11 +139,17 @@ const DashboardLayout = ({ children, currentPath }: { children: JSX.Element; cur
 
 function App() {
   const [currentPath, setCurrentPath] = useState(getHashPath);
+  const [, setAuthRevision] = useState(0);
 
   useEffect(() => {
     const handleHashChange = () => setCurrentPath(getHashPath());
+    const handleAuthSessionChange = () => setAuthRevision(revision => revision + 1);
     window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    window.addEventListener('ksp-auth-session-changed', handleAuthSessionChange);
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+      window.removeEventListener('ksp-auth-session-changed', handleAuthSessionChange);
+    };
   }, []);
 
   if (currentPath === '/login') return <Login />;
