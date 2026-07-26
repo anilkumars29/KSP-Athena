@@ -1,0 +1,10 @@
+{
+    "name": "ks-intellipol-client",
+    "version": "1.22.0",
+    "homepage": "index.html",
+    "scripts": {
+        "preserve": "npm install --legacy-peer-deps",
+        "serve": "npm start",
+        "build": "npm run build"
+    }
+}

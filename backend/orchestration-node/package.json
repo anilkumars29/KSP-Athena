@@ -1,0 +1,11 @@
+{
+    "name": "orchestrator-node",
+    "version": "1.0.0",
+    "description": "KSP-Athena API Gateway and Orchestration",
+    "main": "index.js",
+    "dependencies": {
+        "express": "latest",
+        "pdfkit": "^0.19.1",
+        "zcatalyst-sdk-node": "latest"
+    }
+}

@@ -1,0 +1,39 @@
+/* frontend/src/styles/typography.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+
+:root {
+    --font-primary: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-mono: 'Courier New', Courier, monospace;
+}
+
+body {
+    font-family: var(--font-primary);
+    color: #000000;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 900;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
+    line-height: 1.1;
+}
+
+h1 {
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    letter-spacing: -0.04em;
+}
+
+p {
+    font-size: 1.125rem;
+    font-weight: 400;
+}

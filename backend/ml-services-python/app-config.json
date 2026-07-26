@@ -1,0 +1,8 @@
+{
+    "name": "athena-ml-services",
+    "stack": "python3.11",
+    "build": [
+        "pip install -r requirements.txt"
+    ],
+    "run": "uvicorn graph-service:app --host 0.0.0.0 --port 8080 & uvicorn forecasting:app --host 0.0.0.0 --port 8081"
+}

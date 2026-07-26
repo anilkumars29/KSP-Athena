@@ -1,0 +1,90 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #e5e5e5;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* =========================================
+   KSP-ATHENA: COMPACT ENTERPRISE OVERRIDES
+   ========================================= */
+
+/* 1. Global Scale Down */
+:root {
+  font-size: 13px;
+  /* Instantly shrinks all rem-based sizing across the app */
+}
+
+/* 2. Typography Compression */
+h1 {
+  font-size: 2rem !important;
+  letter-spacing: -1px !important;
+  margin: 0 !important;
+}
+
+h2,
+h3,
+h4 {
+  font-size: 1.1rem !important;
+  margin-top: 0 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+p {
+  font-size: 0.9rem !important;
+}
+
+/* 3. Master Component Overrides (Cards & Containers) */
+.nb-container {
+  padding: 1rem 2rem !important;
+  max-width: 1400px !important;
+  margin: 0 auto !important;
+}
+
+.nb-card {
+  border: 3px solid #000 !important;
+  /* Thinner borders */
+  box-shadow: 4px 4px 0 #000 !important;
+  /* Tighter drop shadows */
+  padding: 1rem !important;
+  /* Less internal padding */
+  border-radius: 0 !important;
+  margin-bottom: 1rem !important;
+}
+
+/* 4. Action Elements (Buttons & Inputs) */
+.nb-button {
+  border: 2px solid #000 !important;
+  box-shadow: 2px 2px 0 #000 !important;
+  padding: 0.4rem 0.8rem !important;
+  font-size: 0.85rem !important;
+  font-weight: 800 !important;
+  border-radius: 0 !important;
+  text-transform: uppercase !important;
+  cursor: pointer !important;
+  transition: all 0.1s ease-in-out !important;
+}
+
+.nb-button:active {
+  box-shadow: 0 0 0 #000 !important;
+  transform: translate(2px, 2px) !important;
+}
+
+.nb-input,
+select,
+textarea {
+  border: 2px solid #000 !important;
+  padding: 0.5rem 0.6rem !important;
+  font-size: 0.85rem !important;
+  border-radius: 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}

@@ -1,0 +1,6 @@
+{
+    "name": "orchestrator-node",
+    "type": "AdvancedIO",
+    "language": "nodejs",
+    "stack": "node18"
+}

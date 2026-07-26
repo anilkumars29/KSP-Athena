@@ -1,0 +1,30 @@
+{
+  "defaults": {
+    "project": 1,
+    "env": 1
+  },
+  "actives": {
+    "project": 1,
+    "env": 1
+  },
+  "projects": [
+    {
+      "idx": 1,
+      "id": "54469000000065001",
+      "name": "KS-IntelliPol",
+      "domain": {
+        "id": "50044198272",
+        "name": "ks-intellipol-60077550150.development"
+      },
+      "timezone": "Asia/Kolkata",
+      "env": [
+        {
+          "idx": 1,
+          "id": "60077550150",
+          "name": "Development",
+          "type": 3
+        }
+      ]
+    }
+  ]
+}

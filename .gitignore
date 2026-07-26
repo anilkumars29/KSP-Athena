@@ -1,0 +1,33 @@
+# Local credentials
+.env
+.env.*
+!.env.example
+
+# Dependencies and generated output
+node_modules/
+build/
+.build/
+
+# Runtime and test output
+*.log
+coverage/
+__pycache__/
+*.py[cod]
+tmp/
+docs/rendered/
+
+# Local troubleshooting artifacts
+frontend/lines.json
+frontend/mlanalytics
+frontend/ts_errors.txt
+frontend/tsc-output*.txt
+
+# Superseded generated handbook drafts
+docs/KSP-ATHENA_Complete_Project_Guide.docx
+docs/KSP-ATHENA_Project_Handbook.docx
+
+# Editor and OS files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

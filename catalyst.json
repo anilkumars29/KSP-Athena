@@ -1,0 +1,11 @@
+{
+  "client": {
+    "source": "frontend/build"
+  },
+  "functions": {
+    "targets": [
+      "ks_intelli_pol_function"
+    ],
+    "source": "functions"
+  }
+}

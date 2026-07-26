@@ -1,0 +1,25 @@
+{
+  "table_identifier": "CaseRegistration",
+  "query": {
+    "page": 1,
+    "select_columns": [
+      "CrimeNo",
+      "RegisteredBy"
+    ],
+    "criteria": {
+      "group_operator": "AND",
+      "group": [
+        {
+          "column_name": "CrimeNo",
+          "comparator": "greater_equal",
+          "value": "926001"
+        },
+        {
+          "column_name": "CrimeNo",
+          "comparator": "less_equal",
+          "value": "926025"
+        }
+      ]
+    }
+  }
+}
