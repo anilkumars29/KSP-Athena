@@ -411,7 +411,7 @@ def make_architecture_diagram(path: Path) -> None:
     centered_text(draw, boxes["catalyst"], "ZOHO CATALYST\nAdvanced I/O Node function\nAuth · policy · analytics · APIs", body)
     centered_text(draw, boxes["data"], "CATALYST DATA STORE\nCaseRegistration\nAthenaUsers\nConversationHistory", body)
     centered_text(draw, boxes["groq"], "GROQ\nNL intent\nGrounded answers\nInterrogation assistance", body)
-    centered_text(draw, boxes["sarvam"], "SARVAM AI\nSaaras STT · Sarvam-30B\nBulbul TTS", body)
+    centered_text(draw, boxes["sarvam"], "SARVAM AI\nSaaras STT · Sarvam-105B\nBulbul TTS", body)
     arrow(draw, (430, 305), (625, 305))
     arrow(draw, (980, 305), (1160, 305))
     arrow(draw, (790, 430), (790, 585))
@@ -886,7 +886,7 @@ def add_stack(g: Guide) -> None:
         [
             ("Groq / llama-3.1-8b-instant", "Natural-language → JSON search intent; grounded answer synthesis; statement interrogation", "Responsive language handling suitable for a live demo.", "No raw SQL execution; answer must be grounded in returned data or selected statement evidence."),
             ("Sarvam AI / Saaras v3", "Speech-to-text for English/Kannada questions", "India-focused speech capability and regional-language support.", "Audio is sent to a third party; consent, retention, encryption, and data residency require review."),
-            ("Sarvam AI / Sarvam-30B", "Selected-FIR-only bilingual case conversation", "Natural bilingual responses from a tightly bounded case context.", "This is prompt grounding, not model fine-tuning; the output remains probabilistic."),
+            ("Sarvam AI / Sarvam-105B", "Selected-FIR-only bilingual case conversation", "Natural bilingual responses from a tightly bounded case context.", "This is prompt grounding, not model fine-tuning; the output remains probabilistic."),
             ("Sarvam AI / Bulbul v3", "Text-to-speech response", "Completes the two-way spoken interaction.", "Voice output should never be treated as an official legal statement without verification."),
         ],
         [1.55, 2.0, 1.9, 1.55],
@@ -894,7 +894,7 @@ def add_stack(g: Guide) -> None:
     )
     g.callout(
         "Terminology",
-        "KSP-ATHENA does not currently fine-tune Sarvam-30B. It performs case-scoped retrieval/prompt grounding: selected FIR fields are placed in the model context. Fine-tuning would mean training model weights on a curated dataset, with a separate evaluation and governance program.",
+        "KSP-ATHENA does not currently fine-tune Sarvam-105B. It performs case-scoped retrieval/prompt grounding: selected FIR fields are placed in the model context. Fine-tuning would mean training model weights on a curated dataset, with a separate evaluation and governance program.",
         fill=CYAN,
     )
     g.h2("19. Testing and development stack")
@@ -1104,7 +1104,7 @@ def add_ai_and_analytics(g: Guide) -> None:
         ["Stage", "Model / mechanism", "Input boundary", "Output"],
         [
             ("Listen", "Saaras v3", "Uploaded audio from the current user", "English/Kannada transcript."),
-            ("Reason", "Sarvam-30B", "Selected FIR fields + up to 8 recent turns + current question", "Concise grounded response with source field when possible."),
+            ("Reason", "Sarvam-105B", "Selected FIR fields + up to 8 recent turns + current question", "Concise grounded response with source field when possible."),
             ("Speak", "Bulbul v3", "Generated case answer", "Audio response."),
         ],
         [1.0, 1.45, 3.1, 1.45],
@@ -1402,7 +1402,7 @@ def add_challenge_status(g: Guide) -> None:
             ("“The project is ready for unrestricted public demo access.”", "ONLY AFTER CONTROLS", "Argos can write and trigger provider costs; isolate data, add quotas/rate limits/CAPTCHA, and monitor abuse."),
             ("“The project is ready for a police pilot with real PII.”", "NO", "Identity, privacy, security, governance, data quality, model evaluation, and operating procedures are incomplete."),
             ("“The system predicts criminals.”", "NO", "Forecasts are aggregate; profiles are review priorities; all outputs require human verification."),
-            ("“The system uses fine-tuned Sarvam.”", "NO", "It uses case-scoped prompt grounding with Sarvam-30B."),
+            ("“The system uses fine-tuned Sarvam.”", "NO", "It uses case-scoped prompt grounding with Sarvam-105B."),
         ],
         [3.05, 1.35, 2.6],
     )
@@ -1582,7 +1582,7 @@ FAQ_GROUPS = {
         ("Is Sarvam fine-tuned on this database?", "No. The current system passes one selected FIR as bounded prompt context. That is grounding, not weight fine-tuning."),
         ("Why scope voice conversation to one case?", "It reduces context size, latency, cost, cross-case leakage, and confusion while matching the investigator’s immediate task."),
         ("How is follow-up context handled?", "The Conversational Hub stores bounded turns by pseudonymous user and session; the case conversation sends only the latest eight sanitized turns."),
-        ("How does the assistant answer Kannada?", "The request language determines the prompt language; Sarvam-30B returns Kannada and Bulbul v3 can speak it. Quality still needs native-speaker evaluation."),
+        ("How does the assistant answer Kannada?", "The request language determines the prompt language; Sarvam-105B returns Kannada and Bulbul v3 can speak it. Quality still needs native-speaker evaluation."),
         ("What happens if a fact is absent?", "The case assistant is instructed to return a fixed “not available in the selected FIR” response rather than infer."),
         ("Can the FIR statement prompt-inject the model?", "It is a risk. The system prompt explicitly labels FIR and history as untrusted evidence and forbids following their instructions. Red-team evaluations and defense in depth are still required."),
         ("Why not use embeddings/vector search?", "The dataset and use cases were addressed with structured filters, exact evidence, and deterministic similarity for the hackathon. Vector search could help semantic retrieval later, but adds indexing, privacy, evaluation, and citation challenges."),

@@ -81,6 +81,23 @@ test('parses JSON only and rejects executable text', () => {
 	assert.throws(() => parseSearchIntent('SELECT * FROM CaseRegistration'), /invalid search intent/);
 });
 
+test('normalizes safe AI sort synonyms while preserving strict rejection of unknown values', () => {
+	const newestIntent = parseSearchIntent('{"requestedFields":["CrimeNo"],"sort":"descending"}');
+	const oldestIntent = parseSearchIntent('{"requestedFields":["CrimeNo"],"sort":"earliest first"}');
+
+	assert.equal(newestIntent.sort, 'newest');
+	assert.equal(oldestIntent.sort, 'oldest');
+	assert.match(buildSafeQuery(newestIntent, 'Investigator').query, /ORDER BY RegisteredAt DESC/);
+	assert.match(buildSafeQuery(oldestIntent, 'Investigator').query, /ORDER BY RegisteredAt ASC/);
+	const unknownAiIntent = parseSearchIntent('{"requestedFields":["CrimeNo"],"sort":"random"}');
+	assert.equal(unknownAiIntent.sort, undefined);
+	assert.match(buildSafeQuery(unknownAiIntent, 'Investigator').query, /ORDER BY RegisteredAt DESC/);
+	assert.throws(
+		() => buildSafeQuery({ requestedFields: ['CrimeNo'], sort: 'random' }, 'Investigator'),
+		/sort must be either newest or oldest/
+	);
+});
+
 test('allows Argos demo sessions to use full case fields and investigation filters', () => {
 	const { query } = buildSafeQuery({
 		requestedFields: ['CrimeNo', 'VictimName', 'VictimStatement', 'AccusedName'],

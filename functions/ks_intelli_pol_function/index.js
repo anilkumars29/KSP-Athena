@@ -601,7 +601,7 @@ app.post('/case-conversation', async (req, res) => {
 		const chatResponse = await axios.post(
 			'https://api.sarvam.ai/v1/chat/completions',
 			{
-				model: 'sarvam-30b',
+				model: 'sarvam-105b',
 				messages,
 				temperature: 0.1,
 				reasoning_effort: null,
@@ -664,7 +664,7 @@ app.post('/case-conversation', async (req, res) => {
 				spokenReplyRequested: input.speak,
 				spokenReplyGenerated: Boolean(audio),
 				evidenceFieldCount: evidenceFields.length,
-				model: 'sarvam-30b'
+				model: 'sarvam-105b'
 			}
 		});
 
@@ -678,7 +678,7 @@ app.post('/case-conversation', async (req, res) => {
 				crimeNo: String(record.CrimeNo),
 				fields: evidenceFields,
 				scope: 'SELECTED_FIR_ONLY',
-				model: 'sarvam-30b'
+				model: 'sarvam-105b'
 			},
 			auditLogged: auditWrite.logged
 		});

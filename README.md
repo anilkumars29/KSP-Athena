@@ -191,7 +191,7 @@ The language models help interpret and communicate. They do not secretly calcula
 | --- | --- | --- |
 | Groq / `llama-3.1-8b-instant` | JSON search intent, grounded answer synthesis, statement interrogation | The server—not the model—authorizes and constructs database queries |
 | Sarvam AI / Saaras v3 | English/Kannada speech-to-text | Audio is bounded and handled server-side |
-| Sarvam AI / Sarvam-30B | Selected-FIR bilingual case conversation | Receives only the chosen role-permitted FIR and recent bounded turns |
+| Sarvam AI / Sarvam-105B | Selected-FIR bilingual case conversation | Receives only the chosen role-permitted FIR and recent bounded turns |
 | Sarvam AI / Bulbul v3 | Spoken case answer | Voice output remains a review aid |
 
 > The Sarvam implementation uses **case-scoped prompt grounding**, not model fine-tuning. No model weights are trained by this project.

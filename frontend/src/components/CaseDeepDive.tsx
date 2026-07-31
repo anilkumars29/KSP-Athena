@@ -524,7 +524,7 @@ export const CaseDeepDive: React.FC = () => {
                         </div>
 
                         <div style={{ marginBottom: '0.8rem', padding: '0.55rem', border: '2px solid #000', background: '#FFE600', fontSize: '0.72rem', fontWeight: 800 }}>
-                            SARVAM AI · FIR {activeCase.crimeNo} ONLY · SAARAS V3 → SARVAM-30B → BULBUL V3
+                            SARVAM AI · FIR {activeCase.crimeNo} ONLY · SAARAS V3 → SARVAM-105B → BULBUL V3
                         </div>
 
                         {/* Chat Feed */}

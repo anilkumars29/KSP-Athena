@@ -215,7 +215,27 @@ const parseSearchIntent = (content) => {
 
 	const cleaned = content.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/, '').trim();
 	try {
-		return JSON.parse(cleaned);
+		const intent = JSON.parse(cleaned);
+		if (intent && typeof intent === 'object' && !Array.isArray(intent) && typeof intent.sort === 'string') {
+			const normalizedSort = intent.sort.trim().toLowerCase().replace(/[\s-]+/g, '_');
+			const newestAliases = new Set([
+				'newest', 'latest', 'recent', 'desc', 'descending',
+				'newest_first', 'latest_first', 'most_recent'
+			]);
+			const oldestAliases = new Set([
+				'oldest', 'earliest', 'asc', 'ascending',
+				'oldest_first', 'earliest_first'
+			]);
+
+			if (newestAliases.has(normalizedSort)) {
+				intent.sort = 'newest';
+			} else if (oldestAliases.has(normalizedSort)) {
+				intent.sort = 'oldest';
+			} else {
+				delete intent.sort;
+			}
+		}
+		return intent;
 	} catch {
 		throw new QueryPolicyError('The AI returned an invalid search intent.');
 	}

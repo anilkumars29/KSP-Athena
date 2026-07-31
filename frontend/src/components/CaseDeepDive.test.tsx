@@ -171,7 +171,7 @@ test('holds a bilingual Sarvam conversation scoped to the selected FIR', async (
                 crimeNo: '1001',
                 fields: ['CrimeNo', 'VictimStatement'],
                 scope: 'SELECTED_FIR_ONLY',
-                model: 'sarvam-30b'
+                model: 'sarvam-105b'
             }
         }));
 
